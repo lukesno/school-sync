@@ -9,10 +9,13 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.10",
+    "@react-native-firebase/app": "^8.4.3",
+    "@react-native-firebase/storage": "^7.4.3",
     "@react-navigation/native": "^5.7.4",
     "@react-navigation/stack": "^5.9.1",
     "expo": "~39.0.2",
     "expo-status-bar": "~1.0.2",
+    "firebase": "^7.21.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.2.tar.gz",

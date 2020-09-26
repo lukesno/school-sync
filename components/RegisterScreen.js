@@ -1,10 +1,10 @@
 import styles from './RegisterScreen.style';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import fire from '../fire'
 
 
-
-const RegisterScreen = () => {
+const RegisterScreen = ({ navigation }) => {
 
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
@@ -12,6 +12,33 @@ const RegisterScreen = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
+    const registerClicked = () => {
+        if(password !== confirmPassword) {
+            alert("Passwords aren't the same!");
+        }
+
+        fire
+            .auth()
+            .createUserWithEmailAndPassword(username, password)
+            .then((response) => {
+                const uid = response.user.uid;
+                const data = {
+                    id: uid,
+                    username,
+                    firstname,
+                    lastname,
+                    classroom: ["123"],
+                };
+                const usersRef = fire.firestore().collection('users')
+                usersRef.doc(uid).set(data).then(() => {
+                    // Goes to main for now, but make it go to Dashboard like this ('Dashboard', {user: data})
+                    navigation.navigate('Main')
+                    alert("Register complete.")
+                }).catch((error) => {
+                    alert(error)
+                })
+            })
+    }
     return (
         <View style={styles.registerContainer}>
             <Text style={styles.inputLabel}>First Name</Text>
@@ -51,13 +78,7 @@ const RegisterScreen = () => {
                 autoCapitalize="none"
                 secureTextEntry={true}
             />
-            <TouchableOpacity style={styles.register} onPress={() => {
-                console.log(firstname) 
-                console.log(lastname)
-                console.log(username) 
-                console.log(password)
-                console.log(confirmPassword)              
-            }}>
+            <TouchableOpacity style={styles.register} onPress={() => registerClicked()}>
                 <Text>Next</Text>
             </TouchableOpacity>
         </View>

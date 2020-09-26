@@ -2,11 +2,33 @@ import styles from './MainScreen.style';
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import fire from '../fire'
 
 
 function MainScreen({ navigation }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const loginClicked = () => {
+        fire
+            .auth()
+            .signInWithEmailAndPassword(username, password)
+            .then((response) => {
+                const uid = response.user.uid
+                const usersRef = fire.firestore().collection('users')
+                usersRef.doc(uid).get()
+                    .then(userReturned => {
+                        if(!userReturned.exists) {
+                            alert("Please check your credentials and try again.")
+                            return;
+                        }
+                        const user = userReturned.data()
+                        navigation.navigate('Dashboard', {user})
+                    })
+            }).catch(error => {
+                alert(error)
+            })
+    }
     return (
         <View style={styles.mainContainer}>
             <View style={styles.logoContainer}>
@@ -23,16 +45,19 @@ function MainScreen({ navigation }) {
             >
                 <TextInput
                     style={styles.inputField}
-                    placeholder={"Username"}
+                    placeholder={"Email"}
                     defaultValue={username}
+                    autoCapitalize="none"
                     onChangeText={username => setUsername(username)} />
                 <TextInput
                     style={styles.inputField}
                     placeholder={"Password"}
                     defaultValue={password}
-                    onChangeText={password => setPassword(password)} />
+                    onChangeText={password => setPassword(password)} 
+                    autoCapitalize="none"
+                    secureTextEntry={true} />
                 <View style={styles.credentialButtons}>
-                    <TouchableOpacity style={styles.login} onPress={() => console.log("handle firebase here")}>
+                    <TouchableOpacity style={styles.login} onPress={() => loginClicked()}>
                         <Text style={styles.loginText}>Login</Text>
                     </TouchableOpacity>  
                     <View style={styles.registerUserContainer}>
