@@ -1,38 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import fire from './config/fire';
-import Login from './Login'
-import Home from './Home'
+import React from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import MainScreen from './components/MainScreen.js';
+import LoginScreen from './components/LoginScreen.js';
+import RegisterScreen from './components/RegisterScreen.js';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user : {}
-    }
-  } 
-  componentDidMount() {
-    this.authListener();
-  }
-  authListener() {
-    fire.auth().onAuthStateChanged((user)=>{
-      if(user) {
-        this.setState({user})
-      } else {
-        this.setState({user : null})
-      }
-    })
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <StatusBar style="auto" />
-        {this.state.user ? (<Home/>) : (<Login/>)}
-      </View>
-    );
-  }
+const Stack = createStackNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Main">
+        <Stack.Screen name="Main" component={MainScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="Login" component={LoginScreen} options={{
+          backgroundColor:'#ffffff'
+        }} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
 
 export default App;
