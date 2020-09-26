@@ -13,14 +13,18 @@ const styles = StyleSheet.create({
     },
     login: {
         // Add styling
-        padding: 10,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
         backgroundColor: "#d2b48c",
+        borderRadius: 10,
         marginBottom: 50,
     },
     signUp: {
         // Add styling
-        padding: 10,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
         backgroundColor: "#d2b48c",
+        borderRadius: 10,
     },
 });
 

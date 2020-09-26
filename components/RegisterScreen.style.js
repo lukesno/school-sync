@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-    loginContainer: {
+    registerContainer: {
         flex: 1,
-        marginTop: 200,
+        marginTop: 100,
         alignItems: "center",
     },
     inputLabel: {
@@ -19,8 +19,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginBottom: 20,
     },
-    login: {
-        // Add styling
+    register: {
         paddingHorizontal: 20,
         paddingVertical: 10,
         backgroundColor: "#d2b48c",
