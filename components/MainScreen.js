@@ -32,7 +32,7 @@ function MainScreen({ navigation }) {
                     defaultValue={password}
                     onChangeText={password => setPassword(password)} />
                 <View style={styles.credentialButtons}>
-                    <TouchableOpacity style={styles.login} onPress={() => navigation.navigate("Login")}>
+                    <TouchableOpacity style={styles.login} onPress={() => console.log("handle firebase here")}>
                         <Text style={styles.loginText}>Login</Text>
                     </TouchableOpacity>  
                     <View style={styles.registerUserContainer}>
