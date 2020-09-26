@@ -3,9 +3,11 @@ import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import MainScreen from './components/MainScreen.js';
 import LoginScreen from './components/LoginScreen.js';
+import AssignmentScreen from './components/AssignmentScreen.js';
 import RegisterScreen from './components/RegisterScreen.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
 
 const Stack = createStackNavigator();
 
@@ -18,6 +20,7 @@ export default function App() {
           backgroundColor:'#ffffff'
         }} />
         <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="Assignments" component={AssignmentScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
