@@ -3,7 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import MainScreen from './components/MainScreen.js';
 import RegisterScreen from './components/RegisterScreen.js';
+
 import Dashboard from './components/Dashboard.js'
+import EnrollScreen from './components/EnrollScreen.js';
+import CreateScreen from './components/CreateScreen.js';
+import RegisterOptionsScreen from './components/RegisterOptionsScreen.js';
+
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import fire from './fire.js'
@@ -70,7 +76,27 @@ function App() {
             backgroundColor: 'white'
           }
         }} />
-
+        <Stack.Screen name="Enroll" component={EnrollScreen} options={{
+          cardStyle: {
+            backgroundColor: 'white'
+          }
+        }} />
+        <Stack.Screen name="Create" component={CreateScreen} options={{
+          cardStyle: {
+            backgroundColor: 'white'
+          }
+        }} />
+        <Stack.Screen name="RegisterOptions" component={RegisterOptionsScreen} options={{
+          cardStyle: {
+            backgroundColor: 'white'
+          }
+        }} />
+        {/* Use Luke's Dashboard component Dashboard.js */}
+        {/* <Stack.Screen name="Dashboard" component={DashboardScreen} options={{
+          cardStyle: {
+            backgroundColor: 'white'
+          }
+        }} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

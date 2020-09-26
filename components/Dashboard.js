@@ -12,7 +12,7 @@ const Dashboard = ({user, navigation}) => {
             <Text>Abc</Text>
             <TouchableOpacity style={styles.signOutButton} onPress={() => {
                 fire.auth().signOut().then(() => alert('User signed out!'));
-                navigation.navigate("Main")
+                navigation.navigate('Main')
             }}>
                 <Text style={styles.signOutText}>Sign Out</Text>
             </TouchableOpacity>
