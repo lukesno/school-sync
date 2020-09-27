@@ -132,32 +132,30 @@ const Dashboard = ({ navigation }) => {
                             style={{ backgroundColor: '#3B5998' }}
                             onPress={() => {
                                 fire.auth().signOut().then(() => alert('User signed out!'));
-                                navigation.navigate('Main')
                         }}>
                             <Icon 
                                 type ="MaterialCommunityIcons"
                                 name="logout"
                             />
                         </Button>
-                        
                         <Button 
                             style={{ backgroundColor: '#34A34F' }}
                             onPress={() => {
-                                navigation.navigate('Create')
+                                navigation.navigate('Create');
                         }}>
                             <Icon 
-                                name="google-classroom"
-                                type ="MaterialCommunityIcons"
+                                name="addusergroup"
+                                type ="AntDesign"
                             />
                         </Button>
                         <Button 
                             style={{ backgroundColor: '#DD5144' }}
                             onPress={() => {
-                                navigation.navigate('Enroll')
+                                navigation.navigate('Enroll');
                         }}>
                             <Icon 
-                                type="AntDesign"
-                                name="deleteusergroup" 
+                                type="Entypo"
+                                name="add-to-list" 
                             />
                         </Button>
                     </Fab>
