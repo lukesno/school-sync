@@ -1,6 +1,6 @@
 import styles from './MainScreen.style';
 import React, { useState } from 'react';
-import { Text, View, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
+import { Text, View, TouchableOpacity, Image, KeyboardAvoidingView, SafeAreaView, ScrollView  } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import fire from '../fire'
 
@@ -23,13 +23,15 @@ function MainScreen({ navigation }) {
                             return;
                         }
                         const user = userReturned.data()
-                        navigation.navigate('Dashboard', {user: user})
+                        navigation.navigate('Dashboard', user)
                     })
             }).catch(error => {
                 alert(error)
             })
     }
     return (
+        <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>   
         <View style={styles.mainContainer}>
             <View style={styles.logoContainer}>
                 <Image 
@@ -75,6 +77,9 @@ function MainScreen({ navigation }) {
                 </View>
             </KeyboardAvoidingView>
         </View>
+
+</ScrollView>
+</SafeAreaView>
     );
 }
 

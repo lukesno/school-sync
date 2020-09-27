@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     },
     signOutButton: {
         // Add styling
+        alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 0,
@@ -55,9 +56,9 @@ const styles = StyleSheet.create({
         backgroundColor: "#333287",
         borderRadius: 5,
         marginBottom: 10,
-        marginTop: 40,
+        marginTop: 250,
         height: 50,
-        width: '100%',
+        width: '80%',
     },
     signOutText: {
         color: 'white',

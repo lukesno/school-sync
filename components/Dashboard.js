@@ -1,6 +1,6 @@
 import styles from './Dashboard.style';
-import React from 'react';
-import { Text, View, TouchableOpacity, SectionList } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View, TouchableOpacity, SafeAreaView, ScrollView, SectionList  } from 'react-native';
 import fire from '../fire';
 import AddAssignmentButton from './AddAssignmentButton';
 import { Container } from 'native-base';
@@ -35,9 +35,30 @@ const Assignment = ({ date, title, course}) => {
     )
 }
 
-const Dashboard = ({user, navigation}) => {
+const Dashboard = ({ navigation }) => {
     // Take in some props; in order to access data accordingly in Firebase
+    const [user, setUser] = useState(null);
+
+    const currentUser = fire.auth().currentUser;
+    const usersRef = fire.firestore().collection('users')
+
+    useEffect(() => {
+        usersRef.doc(currentUser.uid).get().then(userReturned => {
+            const updatedUser = userReturned.data()
+            setUser(updatedUser);
+        })
+    }, [])
+
     console.log(user)
+    if(!user) {
+        return null;
+    }
+
+    // const currentUser = updatedUser ? updatedUser : user
+
+    // if(!currentUser) {
+    //     return null;
+    // }
     return (
         <Container>
             {/* <SectionList
@@ -93,16 +114,22 @@ const Dashboard = ({user, navigation}) => {
                     date={"Oct. 4, 2020"}
                 />
             </View>
-            <View style={{  flex: 1 }}>
-                <AddAssignmentButton onPress={() => navigation.navigate("Enroll")}/>
-            </View>
+            <AddAssignmentButton onPress={() => navigation.navigate("AddAssignment")}/>
+            {/* <ScrollView style={styles.scrollView}>  
+                <View>
+                    <Text>Welcome to your dashboard!</Text>
+                </View>
+            </ScrollView> */}
             <TouchableOpacity style={styles.signOutButton} onPress={() => {
                 fire.auth().signOut().then(() => alert('User signed out!'));
                 navigation.navigate('Main')
             }}>
                 <Text style={styles.signOutText}>Sign Out</Text>
             </TouchableOpacity>
+            <Text>{user.username}</Text>
+            <Text>{user.classroom[0]}</Text>
         </Container>
+         
     );
 }
 
