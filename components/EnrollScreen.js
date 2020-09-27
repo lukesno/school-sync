@@ -1,6 +1,6 @@
 import styles from './EnrollScreen.style';
-import React, { useState, useEffect} from 'react';
-import { Text, View, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, TouchableOpacity, Image, KeyboardAvoidingView, SafeAreaView, ScrollView  } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import fire from '../fire'
 
@@ -32,6 +32,8 @@ function EnrollScreen({ navigation }) {
     }
 
     return (
+        <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>  
         <View style={styles.mainContainer}>
             <View style={styles.logoContainer}>
                 <Image 
@@ -70,6 +72,9 @@ function EnrollScreen({ navigation }) {
                 </View>
             </KeyboardAvoidingView>
         </View>
+
+        </ScrollView>
+</SafeAreaView>
     );
 }
 

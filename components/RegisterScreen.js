@@ -1,7 +1,7 @@
 import styles from './RegisterScreen.style';
 import React, { useState } from 'react';
 
-import { Text, View, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
+import { Text, View, TouchableOpacity, Image, KeyboardAvoidingView, SafeAreaView, ScrollView  } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import fire from '../fire'
 
@@ -42,6 +42,10 @@ function RegisterScreen({ navigation }) {
     }
 
     return (
+
+        <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>   
+
         <View style={styles.mainContainer}>
             <View style={styles.logoContainer}>
                 <Image 
@@ -105,6 +109,9 @@ function RegisterScreen({ navigation }) {
                 </View>
             </KeyboardAvoidingView>
         </View>
+
+        </ScrollView>
+      </SafeAreaView>
     );
 }
 
