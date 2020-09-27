@@ -38,7 +38,7 @@ function MainScreen({ navigation }) {
                     source={require('../res/calendar.png')} 
                     style={{height: 100, width: 100}}
                 />
-                <Text style={styles.welcomeMessage}>Welcome Back,</Text>
+                <Text style={styles.welcomeMessage}>SchoolSync</Text>
                 <Text style={styles.signInMessage}>Sign in to continue</Text>
             </View>
             <KeyboardAvoidingView 

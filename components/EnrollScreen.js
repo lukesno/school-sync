@@ -40,8 +40,8 @@ function EnrollScreen({ navigation }) {
         <View style={styles.mainContainer}>
             <View style={styles.logoContainer}>
 
-                <Text style={styles.welcomeMessage}>Name of App</Text>
-                <Text style={styles.signInMessage}>Join your class to never miss any deadlines! Be on that grind :)</Text>
+                {/* <Text style={styles.welcomeMessage}>Name of App</Text> */}
+                <Text style={styles.signInMessage}>Join your class to never miss any deadlines, Be on that grind!</Text>
             </View>
             <KeyboardAvoidingView 
                 style={styles.fieldContainer}

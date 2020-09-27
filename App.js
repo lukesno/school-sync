@@ -9,6 +9,8 @@ import EnrollScreen from './components/EnrollScreen.js';
 import CreateScreen from './components/CreateScreen.js';
 import RegisterOptionsScreen from './components/RegisterOptionsScreen.js';
 import AddAssignmentScreen from './components/AddAssignmentScreen.js';
+import AddClassScreen from './components/AddClassScreen.js';
+
 
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -89,11 +91,21 @@ function App() {
           }
         }} />
         <Stack.Screen name="RegisterOptions" component={RegisterOptionsScreen} options={{
+          title: 'Options',
+          gestureEnabled: false,
+          headerLeft: null,
           cardStyle: {
             backgroundColor: 'white'
           }
         }} />
         <Stack.Screen name="AddAssignment" component={AddAssignmentScreen} options={{
+          title: 'Add Assignment',
+          cardStyle: {
+            backgroundColor: 'white'
+          }
+        }} />
+        <Stack.Screen name="AddClass" component={AddClassScreen} options={{
+          title: 'Add Class',
           cardStyle: {
             backgroundColor: 'white'
           }

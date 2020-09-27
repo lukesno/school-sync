@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
         fontFamily: 'Verdana',
         fontSize: 18,
         fontWeight: '500',
-        color: '#454545'
+        color: '#454545',
+        marginBottom: 10,
     },
     screenDividerHeader: {
         borderTopColor: '#dbdbdb',
@@ -21,6 +22,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#e3ebff',
         width: '100%',
         justifyContent: 'center',
+        marginTop: 0,
     },
     screenDivider: {
         height: 30,

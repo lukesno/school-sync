@@ -7,9 +7,9 @@ import fire from '../fire'
 function AddAssignmentsScreen({ navigation }) {
     const [title, setTitle] = useState("");
     const [dueDate, setDueDate] = useState("");
-    const [amorpm, setAmOrPm] = useState("");
-    const [hour, setHour] = useState("");
-    const [minute, setMinute] = useState("");
+    const [amorpm, setAmOrPm] = useState("AM");
+    const [hour, setHour] = useState("1");
+    const [minute, setMinute] = useState("00");
     const usersRef = fire.firestore().collection('users')
 
     const currentUser = fire.auth().currentUser;
@@ -81,6 +81,7 @@ function AddAssignmentsScreen({ navigation }) {
                             <Picker style={styles.timePicketAlignment}
                             selectedValue={minute}
                             onValueChange={minute => setMinute(minute)}>
+                            <Picker.Item label="00" value="00" />
                             <Picker.Item label="01" value="01" />
                             <Picker.Item label="02" value="02" />
                             <Picker.Item label="03" value="03" />

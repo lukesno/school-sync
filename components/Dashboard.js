@@ -164,7 +164,7 @@ const Dashboard = ({ navigation }) => {
                 <Button 
                     style={{ backgroundColor: '#DD5144' }}
                     onPress={() => {
-                        navigation.navigate('Enroll');
+                        navigation.navigate('AddClass');
                 }}>
                     <Icon 
                         type="AntDesign"

@@ -52,7 +52,7 @@ function RegisterScreen({ navigation }) {
                         source={require('../res/calendar.png')} 
                         style={{height: 100, width: 100}}
                     />
-                    <Text style={styles.signInMessage}>Sign up here! :)</Text>
+                    <Text style={styles.signInMessage}>Sign up here!</Text>
                 </View>
                 <KeyboardAvoidingView 
                     style={styles.fieldContainer}

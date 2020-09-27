@@ -21,14 +21,21 @@ const styles = StyleSheet.create({
         fontFamily: 'Verdana'
     },
     signInMessage: {
-        marginTop: 0,
+        marginTop: 200,
         marginBottom: 100,
         fontSize: 20,
         marginLeft: 17,
         fontFamily: 'Verdana',
         color: '#737272',
     },
-
+    chooseMessage: {
+        marginTop: 10,
+        marginBottom: 100,
+        fontSize: 20,
+        marginLeft: 17,
+        fontFamily: 'Verdana',
+        color: '#737272',
+    },
     credentialButtons: {
         alignItems: "center",
     },
