@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, SafeAreaView, ScrollView, SectionList  } from 'react-native';
 import fire from '../fire';
 import AddAssignmentButton from './AddAssignmentButton';
-import { Container } from 'native-base';
+import { Container, Button, Icon, Fab } from 'native-base';
 import { useIsFocused } from '@react-navigation/native'
 
 //for testing with json format data
@@ -24,14 +24,17 @@ import { useIsFocused } from '@react-navigation/native'
 // ]
 
 const Assignment = ({ date, title, course }) => {
-    return (
-        <View style={styles.assignmentContainer}> 
-            <View style={{width: '75%'}}>
-                <Text style={styles.assignmentTitleText}>{title}</Text>
+    return(
+        <View>
+            <View style={styles.assignmentContainer}> 
+                <View style={{width: '75%'}}>
+                    <Text style={styles.assignmentTitleText}>{title}</Text>
+                </View>
+                <View style={{marginTop: 3}}>
+                    <Text style={styles.assignmentDateText}>{date}</Text>
+                </View>
             </View>
-            <View style={{marginTop: 3}}>
-                <Text style={styles.assignmentDateText}>{date}</Text>
-            </View>
+            <View style={styles.assignmentSeparator}/>
         </View>
     )
 }
@@ -39,7 +42,8 @@ const Assignment = ({ date, title, course }) => {
 const Dashboard = ({ navigation }) => {
     // Take in some props; in order to access data accordingly in Firebase
     const [user, setUser] = useState(null);
-    const [classes, setClasses] = useState([])
+    const [classes, setClasses] = useState([]);
+    const [activeState, setActive] = useState(false);
 
     const currentUser = fire.auth().currentUser;
     const usersRef = fire.firestore().collection('users')
@@ -77,45 +81,91 @@ const Dashboard = ({ navigation }) => {
     }
 
     return (
-        <Container>
-            <View style={styles.headerContainer}>
-                <Text style={styles.screenTitleText}>
-                    Assignments
-                </Text>
-                <View style={styles.screenDivider}>
-                    <Text style={styles.screenDividerText}>
-                        Upcoming
-                    </Text>
-                </View>
-            </View>
-            <View
-                style={styles.assignmentListContainer}
-            >
-
-                {classes.map(eachClass => {
-                    return eachClass.items.map(eachItem => {
-                        return (
-                            <Assignment     
-                             title={eachItem.name}
-                             date={eachItem.date}
-                            />    
-                        );
-                    })
-                })}
-                {user.personal.map(item => {
-                    return (
-                        <Assignment     
-                            title={item.name}
-                            date={item.date}
-                        />    
-                    );
-                })}
-
-            </View>
-            <AddAssignmentButton onPress={() => {
-                navigation.navigate("AddAssignment")
-            }}/>
-        </Container>
+        <SafeAreaView>
+            <ScrollView>
+                <Container>
+                    <View style={styles.headerContainer}>
+                        <Text style={styles.screenTitleText}>
+                            Assignments
+                        </Text>
+                        <View style={styles.screenDividerHeader}>
+                            <Text style={styles.screenDividerText}>
+                                Math
+                            </Text>
+                        </View>
+                    </View>
+                    <View
+                        style={styles.assignmentListContainer}
+                    >
+                        {/* Add map here of classes */}
+                        {classes.map(eachClass => {
+                            return eachClass.items.map(eachItem => {
+                                return (
+                                    <Assignment     
+                                    title={eachItem.name}
+                                    date={eachItem.date}
+                                    />    
+                                );
+                            })
+                        })}
+                        {user.personal.map(item => {
+                            return (
+                                <Assignment     
+                                    title={item.name}
+                                    date={item.date}
+                                />    
+                            );
+                        })}
+                    </View>
+                </Container>
+            </ScrollView>
+                    <Fab
+                        active={activeState}
+                        direction="up"
+                        containerStyle={{}}
+                        style={{backgroundColor: '#333287'}}
+                        position="bottomRight"
+                        onPress={() => setActive(!activeState)}
+                    >
+                        <Icon name="add" />
+                        <Button 
+                            style={{ backgroundColor: '#3B5998' }}
+                            onPress={() => {
+                                fire.auth().signOut().then(() => alert('User signed out!'));
+                                navigation.navigate('Main')
+                        }}>
+                            <Icon 
+                                type ="MaterialCommunityIcons"
+                                name="logout"
+                            />
+                        </Button>
+                        
+                        <Button 
+                            style={{ backgroundColor: '#34A34F' }}
+                            onPress={() => {
+                                navigation.navigate('Create')
+                        }}>
+                            <Icon 
+                                name="google-classroom"
+                                type ="MaterialCommunityIcons"
+                            />
+                        </Button>
+                        <Button 
+                            style={{ backgroundColor: '#DD5144' }}
+                            onPress={() => {
+                                navigation.navigate('Enroll')
+                        }}>
+                            <Icon 
+                                type="AntDesign"
+                                name="deleteusergroup" 
+                            />
+                        </Button>
+                    </Fab>
+                    <AddAssignmentButton onPress={() => {
+                         navigation.navigate("AddAssignment")
+                    }}/>
+        </SafeAreaView>
+        
          
     );
 }

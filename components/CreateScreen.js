@@ -5,24 +5,29 @@ import { TextInput } from 'react-native-gesture-handler';
 
 
 function CreateScreen({ navigation }) {
-    const [classID, setClassIDname] = useState("");
+    const [className, setClassName] = useState("");
+    const [classID, setClassID] = useState("");
     return (
 
-        <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>   
         <View style={styles.mainContainer}>
             <View style={styles.logoContainer}>
-                <Image 
-                    source={require('../res/calendar.png')} 
-                    style={{height: 100, width: 100}}
-                />
                 <Text style={styles.welcomeMessage}>Name of App</Text>
-                <Text style={styles.signInMessage}>Create your class</Text>
+                <Text style={styles.signInMessage}>Want to mark on time and enjoy the weekend? Help your students with some due date reminders :)</Text>
             </View>
             <KeyboardAvoidingView 
                 style={styles.fieldContainer}
                 behavior='padding'
             >
+                <TextInput
+                    style={styles.inputField}
+                    placeholder={"Enter Class Name"}
+                    defaultValue={className}
+                    onChangeText={className => setClassName(className)} 
+                    autoCapitalize="none"
+                    />
+
                 <TextInput
                     style={styles.inputField}
                     placeholder={"Enter Unique Class ID"}
