@@ -11,11 +11,24 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         color: '#454545'
     },
-    screenDivider: {
+    screenDividerHeader: {
+        borderTopColor: '#dbdbdb',
+        borderTopWidth: 1,
+        borderBottomColor: '#dbdbdb',
+        borderBottomWidth: 1,
         height: 30,
         marginTop: 10,
         backgroundColor: '#e3ebff',
         width: '100%',
+        justifyContent: 'center',
+    },
+    screenDivider: {
+        height: 30,
+        backgroundColor: '#e3ebff',
+        width: '100%', 
+        justifyContent: 'center',
+        borderBottomColor: '#dbdbdb',
+        borderBottomWidth: 1,
     },
     screenDividerText: {
         padding: 6,
@@ -28,15 +41,14 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 25,
+        marginBottom: 16,
+        marginTop: 16,
         alignItems: 'flex-start',
+        paddingHorizontal: 20,
     },
     assignmentListContainer: {
-        paddingHorizontal: 20,
-        paddingVertical: 10,
         display: 'flex',
         flexDirection: 'column',
-        marginTop: 5,
         // backgroundColor: 'blue'
     },
     assignmentTitleText: {
@@ -45,6 +57,12 @@ const styles = StyleSheet.create({
     assignmentDateText: {
         fontSize: 12,
         color: "#737272"
+    },
+    assignmentSeparator: {
+        width: '100%',
+        borderBottomWidth: 1,
+        borderBottomColor: '#dbdbdb',
+        // marginBottom: 20,
     },
     signOutButton: {
         // Add styling
