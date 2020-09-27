@@ -24,13 +24,16 @@ import { Container, Button, Icon, Fab } from 'native-base';
 
 const Assignment = ({ date, title, course}) => {
     return(
-        <View style={styles.assignmentContainer}> 
-            <View style={{width: '75%'}}>
-                <Text style={styles.assignmentTitleText}>{title}</Text>
+        <View>
+            <View style={styles.assignmentContainer}> 
+                <View style={{width: '75%'}}>
+                    <Text style={styles.assignmentTitleText}>{title}</Text>
+                </View>
+                <View style={{marginTop: 3}}>
+                    <Text style={styles.assignmentDateText}>{date}</Text>
+                </View>
             </View>
-            <View style={{marginTop: 3}}>
-                <Text style={styles.assignmentDateText}>{date}</Text>
-            </View>
+            <View style={styles.assignmentSeparator}/>
         </View>
     )
 }
@@ -81,9 +84,9 @@ const Dashboard = ({ navigation }) => {
                         <Text style={styles.screenTitleText}>
                             Assignments
                         </Text>
-                        <View style={styles.screenDivider}>
+                        <View style={styles.screenDividerHeader}>
                             <Text style={styles.screenDividerText}>
-                                Upcoming
+                                Math
                             </Text>
                         </View>
                     </View>
@@ -95,14 +98,24 @@ const Dashboard = ({ navigation }) => {
                             title={"Math Problem Set 3" }
                             date={"Sept. 30, 2020"}
                         />    
+                        <View style={styles.screenDivider}>
+                            <Text style={styles.screenDividerText}>
+                                Chemistry
+                            </Text>
+                        </View>
                         <Assignment
                             title={"Chemistry Write Up"}
                             date={"Oct. 4, 2020"}
                         />
                         <Assignment
-                            title={"English Essay Due"}
+                            title={"Chemistry Pre-lab"}
                             date={"Oct. 4, 2020"}
                         />
+                        <View style={styles.screenDivider}>
+                            <Text style={styles.screenDividerText}>
+                                Physics
+                            </Text>
+                        </View>
                         <Assignment
                             title={"Engineering Phsyics Assignment"}
                             date={"Oct. 4, 2020"}
@@ -119,25 +132,16 @@ const Dashboard = ({ navigation }) => {
                             title={"Another Assignment"}
                             date={"Oct. 4, 2020"}
                         />
+                        <View style={styles.screenDivider}>
+                            <Text style={styles.screenDividerText}>
+                                Linear Algebra
+                            </Text>
+                        </View>
                         <Assignment
                             title={"Linear Algebra Quiz"}
                             date={"Oct. 4, 2020"}
                         />
                     </View>
-                    {/* <AddAssignmentButton 
-                        onPress={() => navigation.navigate("AddAssignment")}/> */}
-                    
-                    {/* <ScrollView style={styles.scrollView}>  
-                        <View>
-                            <Text>Welcome to your dashboard!</Text>
-                        </View>
-                    </ScrollView> */}
-                    {/* <TouchableOpacity style={styles.signOutButton} onPress={() => {
-                        fire.auth().signOut().then(() => alert('User signed out!'));
-                        navigation.navigate('Main')
-                    }}>
-                        <Text style={styles.signOutText}>Sign Out</Text>
-                    </TouchableOpacity> */}
                     {/* <Text>{user.username}</Text>
                     <Text>{user.classroom[0]}</Text> */}
                 </Container>
