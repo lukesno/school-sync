@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     headerContainer: {
-        marginTop: 60,
+        marginTop: 20,
     },
     screenTitleText: {
         textAlign: 'center',
