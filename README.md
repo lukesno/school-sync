@@ -1,2 +1,2 @@
 # school-sync
-Repository for SchoolSync Shellhacks 2020 (Project for Shellhacks 2020)
+Repository for SchoolSync (Project for Shellhacks 2020)
