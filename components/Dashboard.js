@@ -22,7 +22,7 @@ import { Container } from 'native-base';
 
 // ]
 
-const Assignment = ({ date, title, course}) => {
+const Assignment = ({ date, title, course }) => {
     return(
         <View style={styles.assignmentContainer}> 
             <View style={{width: '75%'}}>
