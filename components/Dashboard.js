@@ -162,10 +162,12 @@ const Dashboard = ({ navigation }) => {
                                 name="logout"
                             />
                         </Button>
+                        
                         <Button 
                             style={{ backgroundColor: '#34A34F' }}
-                            onPress={console.log("pressed classroom creation") }
-                        >
+                            onPress={() => {
+                                navigation.navigate('Create')
+                        }}>
                             <Icon 
                                 name="google-classroom"
                                 type ="MaterialCommunityIcons"
@@ -173,8 +175,9 @@ const Dashboard = ({ navigation }) => {
                         </Button>
                         <Button 
                             style={{ backgroundColor: '#DD5144' }}
-                            
-                        >
+                            onPress={() => {
+                                navigation.navigate('Enroll')
+                        }}>
                             <Icon 
                                 type="AntDesign"
                                 name="deleteusergroup" 
