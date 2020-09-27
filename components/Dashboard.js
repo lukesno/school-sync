@@ -62,7 +62,15 @@ const Dashboard = ({ navigation }) => {
     }, [user])
 
     if(!user || !classes) {
-        return null;
+        return (
+        <>
+            <TouchableOpacity style={styles.signOutButton} onPress={() => {
+                fire.auth().signOut().then(() => alert('User signed out!'));
+                navigation.navigate('Main')
+            }}>
+                <Text style={styles.signOutText}>Sign Out</Text>
+            </TouchableOpacity>
+        </>);
     }
 
     return (
