@@ -21,12 +21,13 @@ function AddAssignmentsScreen({ navigation }) {
                 const date = dueDate.split("/")
                 if(title && date) {
                     usersRef.doc(currentUser.uid).update({
-                        personal: [...previousPersonal, {name: title, date: `${date[0]} ${date[1]}`}]
+                        personal: [...previousPersonal, {name: title, date: `${date[0]}. ${date[1]}, ${date[2]}`}]
+                    }).then(() => {
+                        navigation.navigate("Dashboard")
                     })
                 }
             })
         })
-        navigation.navigate("Dashboard")
     }
      
     return (
@@ -51,7 +52,7 @@ function AddAssignmentsScreen({ navigation }) {
 
                         <TextInput
                             style={styles.inputField}
-                            placeholder={"Due date in format 'Oct/25'"}
+                            placeholder={"Due date in format 'Sept/25/2000'"}
                             defaultValue={dueDate}
                             value={dueDate}
                             onChangeText={dueDate => setDueDate(dueDate)} 

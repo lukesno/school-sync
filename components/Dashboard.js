@@ -92,7 +92,6 @@ const Dashboard = ({ navigation }) => {
                     <View
                         style={styles.assignmentListContainer}
                     >
-                        {/* Add map here of classes */}
                         {classes.map(eachClass => {
                             return (
                                 <>
@@ -112,14 +111,23 @@ const Dashboard = ({ navigation }) => {
                                 </>
                             );
                         })}
-                        {user.personal.map(item => {
-                            return (
-                                <Assignment     
-                                    title={item.name}
-                                    date={item.date}
-                                />    
-                            );
-                        })}
+                        {(user.personal.length != 0) ?
+                        <>
+                            <View style={styles.screenDividerHeader}>
+                                <Text style={styles.screenDividerText}>
+                                    Personal
+                                </Text>
+                            </View>
+                            {user.personal.map(item => {
+                                return (
+                                    <Assignment     
+                                        title={item.name}
+                                        date={item.date}
+                                    />    
+                                );
+                            })}
+                        </> 
+                        : null}
                     </View>
                 </Container>
             </ScrollView>
@@ -149,14 +157,24 @@ const Dashboard = ({ navigation }) => {
                         navigation.navigate('Create');
                 }}>
                     <Icon 
-                        name="addusergroup"
-                        type ="AntDesign"
+                        name="google-classroom"
+                        type ="MaterialCommunityIcons"
                     />
                 </Button>
                 <Button 
                     style={{ backgroundColor: '#DD5144' }}
                     onPress={() => {
                         navigation.navigate('Enroll');
+                }}>
+                    <Icon 
+                        type="AntDesign"
+                        name="adduser" 
+                    />
+                </Button>
+                <Button 
+                    style={{ backgroundColor: '#f2a218' }}
+                    onPress={() => {
+                        navigation.navigate('AddAssignment');
                 }}>
                     <Icon 
                         type="Entypo"
