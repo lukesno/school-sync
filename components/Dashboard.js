@@ -4,6 +4,7 @@ import { Text, View, TouchableOpacity, SafeAreaView, ScrollView, SectionList  } 
 import fire from '../fire';
 import AddAssignmentButton from './AddAssignmentButton';
 import { Container } from 'native-base';
+import { useIsFocused } from '@react-navigation/native'
 
 //for testing with json format data
 // const DATA = [
@@ -23,7 +24,7 @@ import { Container } from 'native-base';
 // ]
 
 const Assignment = ({ date, title, course }) => {
-    return(
+    return (
         <View style={styles.assignmentContainer}> 
             <View style={{width: '75%'}}>
                 <Text style={styles.assignmentTitleText}>{title}</Text>
@@ -38,24 +39,34 @@ const Assignment = ({ date, title, course }) => {
 const Dashboard = ({ navigation }) => {
     // Take in some props; in order to access data accordingly in Firebase
     const [user, setUser] = useState(null);
-    const [classes, setClasses] = useState(null)
+    const [classes, setClasses] = useState([])
 
     const currentUser = fire.auth().currentUser;
     const usersRef = fire.firestore().collection('users')
     const classesRef = fire.firestore().collection('classes')
 
+    // Make sure that when logging out and logging into another account, new currentUser is fetched
+    const isFocused = useIsFocused()
+
     useEffect(() => {
-        usersRef.doc(currentUser.uid).get().then(userReturned => {
-            const updatedUser = userReturned.data()
-            setUser(updatedUser);
-        })
-    }, [])
+        if(isFocused) {
+            usersRef.doc(currentUser.uid).get().then(userReturned => {
+                const updatedUser = userReturned.data()
+                setUser(updatedUser);
+            })
+        }
+    }, [isFocused])
 
     useEffect(() => {
         if(user) {
+            // console.log(user.classroom);
             classesRef.where('classID', 'in', user.classroom).get().then(querySnapshot => {
                 querySnapshot.forEach(documentSnapshot => {
-                    setClasses(documentSnapshot.data())
+                    const isAlreadyIn = classes.filter(item => item['name'] === documentSnapshot.data().items.name)
+                    console.log(isAlreadyIn.length)
+                    if(isAlreadyIn.length == 0) {
+                        setClasses(prev => [...prev, documentSnapshot.data()])
+                    }
                 })
             })
         }
@@ -67,13 +78,6 @@ const Dashboard = ({ navigation }) => {
 
     return (
         <Container>
-            {/* <SectionList
-                sections={DATA}
-                keyExtractor={( item, index ) => item + index}
-                renderItem={({ item }) => <Assignment title={item} />}
-            >
-
-            </SectionList> */}
             <View style={styles.headerContainer}>
                 <Text style={styles.screenTitleText}>
                     Assignments
@@ -87,54 +91,30 @@ const Dashboard = ({ navigation }) => {
             <View
                 style={styles.assignmentListContainer}
             >
-                {/* Add map here of classes */}
-                <Assignment     
-                    title={"Math Problem Set 3" }
-                    date={"Sept. 30, 2020"}
-                />    
-                <Assignment
-                    title={"Chemistry Write Up"}
-                    date={"Oct. 4, 2020"}
-                />
-                <Assignment
-                    title={"English Essay Due"}
-                    date={"Oct. 4, 2020"}
-                />
-                <Assignment
-                    title={"Engineering Phsyics Assignment"}
-                    date={"Oct. 4, 2020"}
-                />
-                <Assignment
-                    title={"Unit Mindmap Due"}
-                    date={"Oct. 4, 2020"}
-                />
-                <Assignment
-                    title={"SOMA Survey Deadline"}
-                    date={"Oct. 4, 2020"}
-                />
-                <Assignment
-                    title={"Another Assignment"}
-                    date={"Oct. 4, 2020"}
-                />
-                <Assignment
-                    title={"Linear Algebra Quiz"}
-                    date={"Oct. 4, 2020"}
-                />
+
+                {classes.map(eachClass => {
+                    return eachClass.items.map(eachItem => {
+                        return (
+                            <Assignment     
+                             title={eachItem.name}
+                             date={eachItem.date}
+                            />    
+                        );
+                    })
+                })}
+                {user.personal.map(item => {
+                    return (
+                        <Assignment     
+                            title={item.name}
+                            date={item.date}
+                        />    
+                    );
+                })}
+
             </View>
-            <AddAssignmentButton onPress={() => navigation.navigate("AddAssignment")}/>
-            {/* <ScrollView style={styles.scrollView}>  
-                <View>
-                    <Text>Welcome to your dashboard!</Text>
-                </View>
-            </ScrollView> */}
-            <TouchableOpacity style={styles.signOutButton} onPress={() => {
-                fire.auth().signOut().then(() => alert('User signed out!'));
-                navigation.navigate('Main')
-            }}>
-                <Text style={styles.signOutText}>Sign Out</Text>
-            </TouchableOpacity>
-            <Text>{user.username}</Text>
-            <Text>{user.classroom[0]}</Text>
+            <AddAssignmentButton onPress={() => {
+                navigation.navigate("AddAssignment")
+            }}/>
         </Container>
          
     );

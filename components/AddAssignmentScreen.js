@@ -2,7 +2,7 @@ import styles from './AddAssignmentScreen.style';
 import React, { useState } from 'react';
 import { Picker, Text, View, TouchableOpacity, Image, KeyboardAvoidingView, SafeAreaView, ScrollView  } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-
+import fire from '../fire'
 
 function AddAssignmentsScreen({ navigation }) {
     const [title, setTitle] = useState("");
@@ -10,6 +10,24 @@ function AddAssignmentsScreen({ navigation }) {
     const [amorpm, setAmOrPm] = useState("");
     const [hour, setHour] = useState("");
     const [minute, setMinute] = useState("");
+    const usersRef = fire.firestore().collection('users')
+
+    const currentUser = fire.auth().currentUser;
+
+    const addAssignmentPressed = () => {
+        usersRef.where('id', '==', currentUser.uid).get().then(snapshot => {
+            snapshot.forEach(item => {
+                const previousPersonal = item.data().personal
+                const date = dueDate.split("/")
+                if(title && date) {
+                    usersRef.doc(currentUser.uid).update({
+                        personal: [...previousPersonal, {name: title, date: `${date[0]} ${date[1]}`}]
+                    })
+                }
+            })
+        })
+        navigation.navigate("Dashboard")
+    }
      
     return (
 
@@ -32,11 +50,12 @@ function AddAssignmentsScreen({ navigation }) {
                         />
 
                         <TextInput
-                        style={styles.inputField}
-                        placeholder={"Due Date in format 'MM/DD/YYYY'"}
-                        defaultValue={dueDate}
-                        onChangeText={dueDate => setDueDate(dueDate)} 
-                        autoCapitalize="none"
+                            style={styles.inputField}
+                            placeholder={"Due date in format 'Oct/25'"}
+                            defaultValue={dueDate}
+                            value={dueDate}
+                            onChangeText={dueDate => setDueDate(dueDate)} 
+                            autoCapitalize="none"
                         />
 
                         <View style={styles.timeContainer}>
@@ -98,10 +117,8 @@ function AddAssignmentsScreen({ navigation }) {
 
                     <View style={styles.credentialButtons}>
                         <TouchableOpacity style={styles.login} onPress={() => {
-                            console.log("The title is " + title)
-                            console.log("The due date is " + dueDate)
-                            console.log("The due time is " + hour + ":" + minute + " " + amorpm)
-                            navigation.navigate("Dashboard")}}>
+                            addAssignmentPressed();
+                        }}>
 
                             <Text style={styles.loginText}>Add Assignment to Schedule</Text>
                         </TouchableOpacity>  

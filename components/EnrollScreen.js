@@ -60,15 +60,6 @@ function EnrollScreen({ navigation }) {
                     <TouchableOpacity style={styles.login} onPress={() => joinClassPressed()}>
                         <Text style={styles.loginText}>Join Class</Text>
                     </TouchableOpacity>  
-                    <View style={styles.registerUserContainer}>
-                        <Text style={styles.newUserText}>
-                            Done Joining classes? 
-                        </Text>
-                        <View style={{width: '1.5%'}}></View>
-                        <Text style={styles.signInText} onPress={() => navigation.navigate("Dashboard")}>
-                            Go to Dashboard
-                        </Text>
-                    </View>
                 </View>
             </KeyboardAvoidingView>
         </View>

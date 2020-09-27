@@ -98,12 +98,6 @@ function App() {
             backgroundColor: 'white'
           }
         }} />
-        {/* Use Luke's Dashboard component Dashboard.js */}
-        {/* <Stack.Screen name="Dashboard" component={DashboardScreen} options={{
-          cardStyle: {
-            backgroundColor: 'white'
-          }
-        }} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

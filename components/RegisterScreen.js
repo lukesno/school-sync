@@ -26,6 +26,7 @@ function RegisterScreen({ navigation }) {
                     firstname,
                     lastname,
                     classroom: [],
+                    personal: [],
                 };
                 const usersRef = fire.firestore().collection('users')
                 usersRef.doc(uid).set(data).then(() => {
