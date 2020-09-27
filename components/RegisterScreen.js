@@ -16,7 +16,6 @@ function RegisterScreen({ navigation }) {
         if(password !== confirmPassword) {
             alert("Passwords aren't the same!");
         }
-
         fire
             .auth()
             .createUserWithEmailAndPassword(username, password)
@@ -37,6 +36,8 @@ function RegisterScreen({ navigation }) {
                 }).catch((error) => {
                     alert(error)
                 })
+            }).catch((error) => {
+                alert(error)
             })
     }
 
@@ -47,7 +48,6 @@ function RegisterScreen({ navigation }) {
                     source={require('../res/calendar.png')} 
                     style={{height: 100, width: 100}}
                 />
-                <Text style={styles.welcomeMessage}>Name of App</Text>
                 <Text style={styles.signInMessage}>Sign up here! :)</Text>
             </View>
             <KeyboardAvoidingView 

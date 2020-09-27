@@ -57,7 +57,7 @@ function App() {
       <Stack.Navigator initialRouteName={user ? "Dashboard" : "Main"}>
         <Stack.Screen name="Dashboard" options={{
           gestureEnabled: false,
-          
+          headerShown: false,
           cardStyle: {
             backgroundColor: 'white'
           }
