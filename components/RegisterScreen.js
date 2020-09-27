@@ -66,7 +66,7 @@ function RegisterScreen({ navigation }) {
                     onChangeText={lastname => setLastname(lastname)} />
                 <TextInput
                     style={styles.inputField}
-                    placeholder={"Username"}
+                    placeholder={"Please enter a valid email address"}
                     defaultValue={username}
                     onChangeText={username => setUsername(username)} 
                     autoCapitalize="none"
