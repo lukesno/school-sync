@@ -33,11 +33,11 @@ function RegisterScreen({ navigation }) {
                         console.log(classID)
                         navigation.navigate("RegisterOptions")}}>
 
-                        <Text style={styles.loginText}>Add Class to Account</Text>
+                        <Text style={styles.loginText}>Join Class</Text>
                     </TouchableOpacity>  
                     <View style={styles.registerUserContainer}>
                         <Text style={styles.newUserText}>
-                            Done adding classes? 
+                            Done Joining classes? 
                         </Text>
                         <View style={{width: '1.5%'}}></View>
                         <Text style={styles.signInText} onPress={() => navigation.navigate("Dashboard")}>

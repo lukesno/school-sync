@@ -16,7 +16,6 @@ function RegisterScreen({ navigation }) {
         if(password !== confirmPassword) {
             alert("Passwords aren't the same!");
         }
-
         fire
             .auth()
             .createUserWithEmailAndPassword(username, password)
@@ -37,6 +36,8 @@ function RegisterScreen({ navigation }) {
                 }).catch((error) => {
                     alert(error)
                 })
+            }).catch((error) => {
+                alert(error)
             })
     }
 
