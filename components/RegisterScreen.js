@@ -1,6 +1,5 @@
 import styles from './RegisterScreen.style';
 import React, { useState } from 'react';
-
 import { Text, View, TouchableOpacity, Image, KeyboardAvoidingView, SafeAreaView, ScrollView  } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import fire from '../fire'
@@ -47,67 +46,67 @@ function RegisterScreen({ navigation }) {
         <ScrollView style={styles.scrollView}>   
 
         <View style={styles.mainContainer}>
-            <View style={styles.logoContainer}>
-                <Image 
-                    source={require('../res/calendar.png')} 
-                    style={{height: 100, width: 100}}
-                />
-                <Text style={styles.signInMessage}>Sign up here! :)</Text>
-            </View>
-            <KeyboardAvoidingView 
-                style={styles.fieldContainer}
-                behavior='padding'
-            >
-                <TextInput
-                    style={styles.inputField}
-                    placeholder={"First Name"}
-                    defaultValue={firstname}
-                    onChangeText={firstname => setFirstname(firstname)} />
-                <TextInput
-                    style={styles.inputField}
-                    placeholder={"Last Name"}
-                    defaultValue={lastname}
-                    onChangeText={lastname => setLastname(lastname)} />
-                <TextInput
-                    style={styles.inputField}
-                    placeholder={"Email"}
-                    defaultValue={username}
-                    onChangeText={username => setUsername(username)} 
-                    autoCapitalize="none"
+                <View style={styles.logoContainer}>
+                    <Image 
+                        source={require('../res/calendar.png')} 
+                        style={{height: 100, width: 100}}
                     />
-                <TextInput
-                    style={styles.inputField}
-                    placeholder={"Password"}
-                    defaultValue={password}
-                    onChangeText={password => setPassword(password)} 
-                    autoCapitalize="none"
-                    secureTextEntry={true}
-                    />
-                <TextInput
-                    style={styles.inputField}
-                    placeholder={"Confirm Password"}
-                    defaultValue={confirmPassword}
-                    onChangeText={confirmedPassword => setConfirmPassword(confirmedPassword)} 
-                    autoCapitalize="none"
-                    secureTextEntry={true}
-                    />
-                <View style={styles.credentialButtons}>
-                    <TouchableOpacity style={styles.register} onPress={() => {
-                        registerClicked()
-                    }}>
-                        <Text style={styles.loginText}>Register!</Text>
-                    </TouchableOpacity> 
-                    <View style={styles.registerUserContainer}>
-                        <Text style={styles.newUserText}>
-                            Need Assistance? 
-                        </Text>
-                        <View style={{width: '1.5%'}}></View>
-                        <Text style={styles.signInText} onPress={() => console.log("We can add an email address here")}>
-                            Contact Us
-                        </Text>
-                    </View>
+                    <Text style={styles.signInMessage}>Sign up here! :)</Text>
                 </View>
-            </KeyboardAvoidingView>
+                <KeyboardAvoidingView 
+                    style={styles.fieldContainer}
+                    behavior='padding'
+                >
+                    <TextInput
+                        style={styles.inputField}
+                        placeholder={"First Name"}
+                        defaultValue={firstname}
+                        onChangeText={firstname => setFirstname(firstname)} />
+                    <TextInput
+                        style={styles.inputField}
+                        placeholder={"Last Name"}
+                        defaultValue={lastname}
+                        onChangeText={lastname => setLastname(lastname)} />
+                    <TextInput
+                        style={styles.inputField}
+                        placeholder={"Email"}
+                        defaultValue={username}
+                        onChangeText={username => setUsername(username)} 
+                        autoCapitalize="none"
+                        />
+                    <TextInput
+                        style={styles.inputField}
+                        placeholder={"Password"}
+                        defaultValue={password}
+                        onChangeText={password => setPassword(password)} 
+                        autoCapitalize="none"
+                        secureTextEntry={true}
+                        />
+                    <TextInput
+                        style={styles.inputField}
+                        placeholder={"Confirm Password"}
+                        defaultValue={confirmPassword}
+                        onChangeText={confirmedPassword => setConfirmPassword(confirmedPassword)} 
+                        autoCapitalize="none"
+                        secureTextEntry={true}
+                        />
+                    <View style={styles.credentialButtons}>
+                        <TouchableOpacity style={styles.register} onPress={() => {
+                            registerClicked()
+                        }}>
+                            <Text style={styles.loginText}>Register!</Text>
+                        </TouchableOpacity> 
+                        <View style={styles.registerUserContainer}>
+                            <Text style={styles.newUserText}>
+                                Need Assistance? 
+                            </Text>
+                            <View style={{width: '1.5%'}}></View>
+                            <Text style={styles.signInText} onPress={() => console.log("We can add an email address here")}>
+                                Contact Us
+                            </Text>
+                        </View>
+                    </View>
+                </KeyboardAvoidingView>
         </View>
 
         </ScrollView>

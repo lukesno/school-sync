@@ -59,6 +59,8 @@ function MainScreen({ navigation }) {
                     autoCapitalize="none"
                     secureTextEntry={true} />
                 <View style={styles.credentialButtons}>
+                    {/* <TouchableOpacity style={styles.login} onPress={() => navigation.navigate("Assignments")}> */}
+                    
                     <TouchableOpacity style={styles.login} onPress={() => loginClicked()}>
                         <Text style={styles.loginText}>Login</Text>
                     </TouchableOpacity>  
