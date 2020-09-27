@@ -14,7 +14,7 @@ function CreateScreen({ navigation }) {
                     style={{height: 100, width: 100}}
                 />
                 <Text style={styles.welcomeMessage}>Name of App</Text>
-                <Text style={styles.signInMessage}>Sign up here! :)</Text>
+                <Text style={styles.signInMessage}>Create your class</Text>
             </View>
             <KeyboardAvoidingView 
                 style={styles.fieldContainer}
@@ -22,7 +22,7 @@ function CreateScreen({ navigation }) {
             >
                 <TextInput
                     style={styles.inputField}
-                    placeholder={"Enter Class ID"}
+                    placeholder={"Enter Unique Class ID"}
                     defaultValue={classID}
                     onChangeText={classID => setClassID(classID)} 
                     autoCapitalize="none"

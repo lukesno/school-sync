@@ -9,12 +9,9 @@ function DashboardScreen({ navigation }) {
     return (
         <View style={styles.mainContainer}>
             <View style={styles.logoContainer}>
-                <Image 
-                    source={require('../res/calendar.png')} 
-                    style={{height: 100, width: 100}}
-                />
+
                 <Text style={styles.welcomeMessage}>Name of App</Text>
-                <Text style={styles.signInMessage}>Welcome to the Dashboard! to Do!</Text>
+                <Text style={styles.signInMessage}>Welcome FirstName LastName</Text>
             </View>
             <KeyboardAvoidingView 
                 style={styles.fieldContainer}
