@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
 
     },
     logoContainer: {
-        marginTop: 50,
+        marginTop: 40,
         marginLeft: 25,
         alignItems: 'flex-start',
         // backgroundColor: 'blue',
