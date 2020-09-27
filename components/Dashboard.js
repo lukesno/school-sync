@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, SafeAreaView, ScrollView, SectionList  } from 'react-native';
 import fire from '../fire';
 import AddAssignmentButton from './AddAssignmentButton';
-import { Container } from 'native-base';
+import { Container, Button, Icon, Fab } from 'native-base';
 
 //for testing with json format data
 // const DATA = [
@@ -38,7 +38,8 @@ const Assignment = ({ date, title, course}) => {
 const Dashboard = ({ navigation }) => {
     // Take in some props; in order to access data accordingly in Firebase
     const [user, setUser] = useState(null);
-    const [classes, setClasses] = useState(null)
+    const [classes, setClasses] = useState(null);
+    const [activeState, setActive] = useState(false);
 
     const currentUser = fire.auth().currentUser;
     const usersRef = fire.firestore().collection('users')
@@ -62,88 +63,127 @@ const Dashboard = ({ navigation }) => {
     }, [user])
 
     if(!user || !classes) {
-        return (
-        <>
-            <TouchableOpacity style={styles.signOutButton} onPress={() => {
-                fire.auth().signOut().then(() => alert('User signed out!'));
-                navigation.navigate('Main')
-            }}>
-                <Text style={styles.signOutText}>Sign Out</Text>
-            </TouchableOpacity>
-        </>);
+        return null;
     }
 
     return (
-        <Container>
-            {/* <SectionList
-                sections={DATA}
-                keyExtractor={( item, index ) => item + index}
-                renderItem={({ item }) => <Assignment title={item} />}
-            >
+        <SafeAreaView>
+            <ScrollView>
+                <Container>
+                    {/* <SectionList
+                        sections={DATA}
+                        keyExtractor={( item, index ) => item + index}
+                        renderItem={({ item }) => <Assignment title={item} />}
+                    >
 
-            </SectionList> */}
-            <View style={styles.headerContainer}>
-                <Text style={styles.screenTitleText}>
-                    Assignments
-                </Text>
-                <View style={styles.screenDivider}>
-                    <Text style={styles.screenDividerText}>
-                        Upcoming
-                    </Text>
-                </View>
-            </View>
-            <View
-                style={styles.assignmentListContainer}
-            >
-                {/* Add map here of classes */}
-                <Assignment     
-                    title={"Math Problem Set 3" }
-                    date={"Sept. 30, 2020"}
-                />    
-                <Assignment
-                    title={"Chemistry Write Up"}
-                    date={"Oct. 4, 2020"}
-                />
-                <Assignment
-                    title={"English Essay Due"}
-                    date={"Oct. 4, 2020"}
-                />
-                <Assignment
-                    title={"Engineering Phsyics Assignment"}
-                    date={"Oct. 4, 2020"}
-                />
-                <Assignment
-                    title={"Unit Mindmap Due"}
-                    date={"Oct. 4, 2020"}
-                />
-                <Assignment
-                    title={"SOMA Survey Deadline"}
-                    date={"Oct. 4, 2020"}
-                />
-                <Assignment
-                    title={"Another Assignment"}
-                    date={"Oct. 4, 2020"}
-                />
-                <Assignment
-                    title={"Linear Algebra Quiz"}
-                    date={"Oct. 4, 2020"}
-                />
-            </View>
-            <AddAssignmentButton onPress={() => navigation.navigate("AddAssignment")}/>
-            {/* <ScrollView style={styles.scrollView}>  
-                <View>
-                    <Text>Welcome to your dashboard!</Text>
-                </View>
-            </ScrollView> */}
-            <TouchableOpacity style={styles.signOutButton} onPress={() => {
-                fire.auth().signOut().then(() => alert('User signed out!'));
-                navigation.navigate('Main')
-            }}>
-                <Text style={styles.signOutText}>Sign Out</Text>
-            </TouchableOpacity>
-            <Text>{user.username}</Text>
-            <Text>{user.classroom[0]}</Text>
-        </Container>
+                    </SectionList> */}
+                    <View style={styles.headerContainer}>
+                        <Text style={styles.screenTitleText}>
+                            Assignments
+                        </Text>
+                        <View style={styles.screenDivider}>
+                            <Text style={styles.screenDividerText}>
+                                Upcoming
+                            </Text>
+                        </View>
+                    </View>
+                    <View
+                        style={styles.assignmentListContainer}
+                    >
+                        {/* Add map here of classes */}
+                        <Assignment     
+                            title={"Math Problem Set 3" }
+                            date={"Sept. 30, 2020"}
+                        />    
+                        <Assignment
+                            title={"Chemistry Write Up"}
+                            date={"Oct. 4, 2020"}
+                        />
+                        <Assignment
+                            title={"English Essay Due"}
+                            date={"Oct. 4, 2020"}
+                        />
+                        <Assignment
+                            title={"Engineering Phsyics Assignment"}
+                            date={"Oct. 4, 2020"}
+                        />
+                        <Assignment
+                            title={"Unit Mindmap Due"}
+                            date={"Oct. 4, 2020"}
+                        />
+                        <Assignment
+                            title={"SOMA Survey Deadline"}
+                            date={"Oct. 4, 2020"}
+                        />
+                        <Assignment
+                            title={"Another Assignment"}
+                            date={"Oct. 4, 2020"}
+                        />
+                        <Assignment
+                            title={"Linear Algebra Quiz"}
+                            date={"Oct. 4, 2020"}
+                        />
+                    </View>
+                    {/* <AddAssignmentButton 
+                        onPress={() => navigation.navigate("AddAssignment")}/> */}
+                    
+                    {/* <ScrollView style={styles.scrollView}>  
+                        <View>
+                            <Text>Welcome to your dashboard!</Text>
+                        </View>
+                    </ScrollView> */}
+                    {/* <TouchableOpacity style={styles.signOutButton} onPress={() => {
+                        fire.auth().signOut().then(() => alert('User signed out!'));
+                        navigation.navigate('Main')
+                    }}>
+                        <Text style={styles.signOutText}>Sign Out</Text>
+                    </TouchableOpacity> */}
+                    {/* <Text>{user.username}</Text>
+                    <Text>{user.classroom[0]}</Text> */}
+                </Container>
+            </ScrollView>
+            <Fab
+                        active={activeState}
+                        direction="up"
+                        containerStyle={{}}
+                        style={{backgroundColor: '#333287'}}
+                        position="bottomRight"
+                        onPress={() => setActive(!activeState)}
+                    >
+                        <Icon name="add" />
+                        <Button 
+                            style={{ backgroundColor: '#3B5998' }}
+                            onPress={() => {
+                                fire.auth().signOut().then(() => alert('User signed out!'));
+                                navigation.navigate('Main')
+                        }}>
+                            <Icon 
+                                type ="MaterialCommunityIcons"
+                                name="logout"
+                            />
+                        </Button>
+                        <Button 
+                            style={{ backgroundColor: '#34A34F' }}
+                            onPress={console.log("pressed classroom creation") }
+                        >
+                            <Icon 
+                                name="google-classroom"
+                                type ="MaterialCommunityIcons"
+                            />
+                        </Button>
+                        <Button 
+                            style={{ backgroundColor: '#DD5144' }}
+                            
+                        >
+                            <Icon 
+                                type="AntDesign"
+                                name="deleteusergroup" 
+                            />
+                        </Button>
+                    </Fab>
+        </SafeAreaView>
+        
+        
          
     );
 }

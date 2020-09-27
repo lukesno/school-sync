@@ -8,7 +8,7 @@ function CreateScreen({ navigation }) {
     const [classID, setClassIDname] = useState("");
     return (
 
-        <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>   
         <View style={styles.mainContainer}>
             <View style={styles.logoContainer}>

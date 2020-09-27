@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         justifyContent: 'flex-end',
         bottom: 70,
+        marginTop: 160,
         //backgroundColor: 'red',
     },
     registerUserContainer: {
