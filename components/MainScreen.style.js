@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         width: '80%',
         alignSelf: 'center',
         justifyContent: 'flex-end',
-        bottom: 70,
+        bottom: 90,
         marginTop: 160,
         //backgroundColor: 'red',
     },

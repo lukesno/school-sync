@@ -16,15 +16,18 @@ function EnrollScreen({ navigation }) {
         classesRef.where('classID', '==', classID).get().then(snapshot => {
             // When classroom exists,
             if(!snapshot.empty) {
-                usersRef.doc(user.uid).update({
-                    classroom: [classID]
-                }).then(() => {
-                    usersRef.doc(user.uid).get().then(userReturned => {
-                        const updatedUser = userReturned.data()
-                        navigation.navigate("Dashboard", {updatedUser});
-                    })
-                })
+                usersRef.doc(user.uid).get().then(documentSnapshot => {
+                    const existingClass = documentSnapshot.data().classroom
+                    const isAlreadyIn = existingClass.filter(item => item === classID)
+                    if(isAlreadyIn.length == 0) {
+                        usersRef.doc(user.uid).update({
+                            classroom: [...existingClass, classID]
+                        }).then(() => {
+                            navigation.navigate("Dashboard");
+                        })
+                    }
 
+                })
             } else {
                 alert("Class ID not found! Please try again.")
             }

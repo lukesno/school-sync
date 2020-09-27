@@ -88,25 +88,29 @@ const Dashboard = ({ navigation }) => {
                         <Text style={styles.screenTitleText}>
                             Assignments
                         </Text>
-                        <View style={styles.screenDividerHeader}>
-                            <Text style={styles.screenDividerText}>
-                                Math
-                            </Text>
-                        </View>
                     </View>
                     <View
                         style={styles.assignmentListContainer}
                     >
                         {/* Add map here of classes */}
                         {classes.map(eachClass => {
-                            return eachClass.items.map(eachItem => {
-                                return (
-                                    <Assignment     
-                                    title={eachItem.name}
-                                    date={eachItem.date}
-                                    />    
-                                );
-                            })
+                            return (
+                                <>
+                                    <View style={styles.screenDividerHeader}>
+                                        <Text style={styles.screenDividerText}>
+                                            {eachClass.classname}
+                                        </Text>
+                                    </View>
+                                    {eachClass.items.map(eachItem => {
+                                        return (
+                                            <Assignment     
+                                            title={eachItem.name}
+                                            date={eachItem.date}
+                                            />    
+                                        );
+                                    })}
+                                </>
+                            );
                         })}
                         {user.personal.map(item => {
                             return (
@@ -119,49 +123,47 @@ const Dashboard = ({ navigation }) => {
                     </View>
                 </Container>
             </ScrollView>
-                    <Fab
-                        active={activeState}
-                        direction="up"
-                        containerStyle={{}}
-                        style={{backgroundColor: '#333287'}}
-                        position="bottomRight"
-                        onPress={() => setActive(!activeState)}
-                    >
-                        <Icon name="add" />
-                        <Button 
-                            style={{ backgroundColor: '#3B5998' }}
-                            onPress={() => {
-                                fire.auth().signOut().then(() => alert('User signed out!'));
-                        }}>
-                            <Icon 
-                                type ="MaterialCommunityIcons"
-                                name="logout"
-                            />
-                        </Button>
-                        <Button 
-                            style={{ backgroundColor: '#34A34F' }}
-                            onPress={() => {
-                                navigation.navigate('Create');
-                        }}>
-                            <Icon 
-                                name="addusergroup"
-                                type ="AntDesign"
-                            />
-                        </Button>
-                        <Button 
-                            style={{ backgroundColor: '#DD5144' }}
-                            onPress={() => {
-                                navigation.navigate('Enroll');
-                        }}>
-                            <Icon 
-                                type="Entypo"
-                                name="add-to-list" 
-                            />
-                        </Button>
-                    </Fab>
-                    <AddAssignmentButton onPress={() => {
-                         navigation.navigate("AddAssignment")
-                    }}/>
+            <Fab
+                active={activeState}
+                direction="up"
+                containerStyle={{}}
+                style={{backgroundColor: '#333287'}}
+                position="bottomRight"
+                onPress={() => setActive(!activeState)}
+            >
+                <Icon name="add" />
+                <Button 
+                    style={{ backgroundColor: '#3B5998' }}
+                    onPress={() => {
+                        fire.auth().signOut().then(() => alert('User signed out!'));
+                        navigation.navigate('Main');
+                }}>
+                    <Icon 
+                        type ="MaterialCommunityIcons"
+                        name="logout"
+                    />
+                </Button>
+                <Button 
+                    style={{ backgroundColor: '#34A34F' }}
+                    onPress={() => {
+                        navigation.navigate('Create');
+                }}>
+                    <Icon 
+                        name="addusergroup"
+                        type ="AntDesign"
+                    />
+                </Button>
+                <Button 
+                    style={{ backgroundColor: '#DD5144' }}
+                    onPress={() => {
+                        navigation.navigate('Enroll');
+                }}>
+                    <Icon 
+                        type="Entypo"
+                        name="add-to-list" 
+                    />
+                </Button>
+            </Fab>
         </SafeAreaView>
         
          
