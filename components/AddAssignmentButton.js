@@ -1,6 +1,4 @@
-import styles from './AssignmentScreenStyles';
-import React, { useState } from 'react';
-import { Text, View, TextInput, TouchableOpacity } from 'react-native';
+import React from 'react';
 import { Fab, Icon } from 'native-base';
 
 function AddAssignmentButton({ onPress }) {
