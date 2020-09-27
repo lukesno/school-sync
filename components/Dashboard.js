@@ -46,7 +46,8 @@ const Dashboard = ({ navigation }) => {
             }}>
                 <Text style={styles.signOutText}>Add Assignment</Text>
             </TouchableOpacity>
-
+            <Text>{user.username}</Text>
+            <Text>{user.classroom[0]}</Text>
         </View>
 
 </ScrollView>
