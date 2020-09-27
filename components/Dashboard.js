@@ -147,45 +147,56 @@ const Dashboard = ({ navigation }) => {
                 </Container>
             </ScrollView>
             <Fab
-                        active={activeState}
-                        direction="up"
-                        containerStyle={{}}
-                        style={{backgroundColor: '#333287'}}
-                        position="bottomRight"
-                        onPress={() => setActive(!activeState)}
-                    >
-                        <Icon name="add" />
-                        <Button 
-                            style={{ backgroundColor: '#3B5998' }}
-                            onPress={() => {
-                                fire.auth().signOut().then(() => alert('User signed out!'));
-                        }}>
-                            <Icon 
-                                type ="MaterialCommunityIcons"
-                                name="logout"
-                            />
-                        </Button>
-                        <Button 
-                            style={{ backgroundColor: '#34A34F' }}
-                            onPress={() => {
-                                navigation.navigate('Create');
-                        }}>
-                            <Icon 
-                                name="addusergroup"
-                                type ="AntDesign"
-                            />
-                        </Button>
-                        <Button 
-                            style={{ backgroundColor: '#DD5144' }}
-                            onPress={() => {
-                                navigation.navigate('Enroll');
-                        }}>
-                            <Icon 
-                                type="Entypo"
-                                name="add-to-list" 
-                            />
-                        </Button>
-                    </Fab>
+                active={activeState}
+                direction="up"
+                containerStyle={{}}
+                style={{backgroundColor: '#333287'}}
+                position="bottomRight"
+                onPress={() => setActive(!activeState)}
+            >
+                <Icon name="add" />
+                <Button 
+                    style={{ backgroundColor: '#3B5998' }}
+                    onPress={() => {
+                        fire.auth().signOut().then(() => alert('User signed out!'));
+                        navigation.navigate('Main');
+                }}>
+                    <Icon 
+                        type ="MaterialCommunityIcons"
+                        name="logout"
+                    />
+                </Button>
+                <Button 
+                    style={{ backgroundColor: '#34A34F' }}
+                    onPress={() => {
+                        navigation.navigate('Create');
+                }}>
+                    <Icon 
+                        name="google-classroom"
+                        type ="MaterialCommunityIcons"
+                    />
+                </Button>
+                <Button 
+                    style={{ backgroundColor: '#DD5144' }}
+                    onPress={() => {
+                        navigation.navigate('Enroll');
+                }}>
+                    <Icon 
+                        type="AntDesign"
+                        name="adduser" 
+                    />
+                </Button>
+                <Button 
+                    style={{ backgroundColor: '#f2a218' }}
+                    onPress={() => {
+                        navigation.navigate('AddAssignment');
+                }}>
+                    <Icon 
+                        type="Entypo"
+                        name="add-to-list" 
+                    />
+                </Button>
+            </Fab>
         </SafeAreaView>
         
         
