@@ -62,7 +62,7 @@ function App() {
             backgroundColor: 'white'
           }
         }}>
-          {props => <Dashboard {...props} user={user} />}
+          {props => <Dashboard {...props} />}
         </Stack.Screen> 
         <Stack.Screen name="Main" component={MainScreen} options={{
           gestureEnabled: false,

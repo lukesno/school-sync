@@ -5,6 +5,7 @@ import { TextInput } from 'react-native-gesture-handler';
 
 
 function RegisterOptionsScreen({ navigation }) {
+
     return (
         <View style={styles.mainContainer}>
             <View style={styles.logoContainer}>
@@ -28,10 +29,6 @@ function RegisterOptionsScreen({ navigation }) {
                     <TouchableOpacity style={styles.login} onPress={() => {
                         navigation.navigate("Create")}}>
                         <Text style={styles.loginText}>Create a Class</Text>
-                    </TouchableOpacity>  
-                    <TouchableOpacity style={styles.login} onPress={() => {
-                        navigation.navigate("Dashboard")}}>
-                        <Text style={styles.loginText}>Go to Dashboard</Text>
                     </TouchableOpacity>  
                 </View>
             </KeyboardAvoidingView>

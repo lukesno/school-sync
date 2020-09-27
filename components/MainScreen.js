@@ -23,7 +23,7 @@ function MainScreen({ navigation }) {
                             return;
                         }
                         const user = userReturned.data()
-                        navigation.navigate('Dashboard', {user: user})
+                        navigation.navigate('Dashboard', user)
                     })
             }).catch(error => {
                 alert(error)

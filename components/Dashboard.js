@@ -1,12 +1,33 @@
 import styles from './Dashboard.style';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Text, View, TouchableOpacity } from 'react-native';
 import fire from '../fire';
 
-const Dashboard = ({user, navigation}) => {
+const Dashboard = ({ navigation }) => {
     // Take in some props; in order to access data accordingly in Firebase
+    const [user, setUser] = useState(null);
+
+    const currentUser = fire.auth().currentUser;
+    const usersRef = fire.firestore().collection('users')
+
+    useEffect(() => {
+        usersRef.doc(currentUser.uid).get().then(userReturned => {
+            const updatedUser = userReturned.data()
+            setUser(updatedUser);
+        })
+    }, [])
+
     console.log(user)
+    if(!user) {
+        return null;
+    }
+
+    // const currentUser = updatedUser ? updatedUser : user
+
+    // if(!currentUser) {
+    //     return null;
+    // }
     return (
         <View>
             <Text>Abc</Text>
@@ -16,6 +37,8 @@ const Dashboard = ({user, navigation}) => {
             }}>
                 <Text style={styles.signOutText}>Sign Out</Text>
             </TouchableOpacity>
+            <Text>{user.classroom[0]}</Text>
+            <Text>{user.username}</Text>
         </View>
     );
 }
