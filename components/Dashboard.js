@@ -7,9 +7,11 @@ import fire from '../fire';
 const Dashboard = ({ navigation }) => {
     // Take in some props; in order to access data accordingly in Firebase
     const [user, setUser] = useState(null);
+    const [classes, setClasses] = useState(null)
 
     const currentUser = fire.auth().currentUser;
     const usersRef = fire.firestore().collection('users')
+    const classesRef = fire.firestore().collection('classes')
 
     useEffect(() => {
         usersRef.doc(currentUser.uid).get().then(userReturned => {
@@ -18,16 +20,21 @@ const Dashboard = ({ navigation }) => {
         })
     }, [])
 
-    console.log(user)
-    if(!user) {
+    useEffect(() => {
+        if(user) {
+            classesRef.where('classID', 'in', user.classroom).get().then(querySnapshot => {
+                querySnapshot.forEach(documentSnapshot => {
+                    console.log(documentSnapshot.data())
+                    setClasses(documentSnapshot.data())
+                })
+            })
+        }
+    }, [user])
+
+    if(!user || !classes) {
         return null;
     }
 
-    // const currentUser = updatedUser ? updatedUser : user
-
-    // if(!currentUser) {
-    //     return null;
-    // }
     return (
         <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>  
@@ -48,6 +55,8 @@ const Dashboard = ({ navigation }) => {
             </TouchableOpacity>
             <Text>{user.username}</Text>
             <Text>{user.classroom[0]}</Text>
+            <Text>{classes.items[0].name}</Text>
+            <Text>{classes.items[1].name}</Text>
         </View>
 
 </ScrollView>
