@@ -1,13 +1,15 @@
 import styles from './Dashboard.style';
 import React from 'react';
 
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, SafeAreaView, ScrollView  } from 'react-native';
 import fire from '../fire';
 
 const Dashboard = ({user, navigation}) => {
     // Take in some props; in order to access data accordingly in Firebase
     console.log(user)
     return (
+        <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>  
         <View>
             <Text>Welcome to your dashboard!</Text>
 
@@ -24,6 +26,9 @@ const Dashboard = ({user, navigation}) => {
                 <Text style={styles.signOutText}>Add Assignment</Text>
             </TouchableOpacity>
         </View>
+
+</ScrollView>
+</SafeAreaView>
     );
 }
 
