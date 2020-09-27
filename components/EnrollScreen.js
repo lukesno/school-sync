@@ -36,12 +36,9 @@ function EnrollScreen({ navigation }) {
         <ScrollView style={styles.scrollView}>  
         <View style={styles.mainContainer}>
             <View style={styles.logoContainer}>
-                <Image 
-                    source={require('../res/calendar.png')} 
-                    style={{height: 100, width: 100}}
-                />
+
                 <Text style={styles.welcomeMessage}>Name of App</Text>
-                <Text style={styles.signInMessage}>Sign up here! :)</Text>
+                <Text style={styles.signInMessage}>Join your class to never miss any deadlines! Be on that grind :)</Text>
             </View>
             <KeyboardAvoidingView 
                 style={styles.fieldContainer}
