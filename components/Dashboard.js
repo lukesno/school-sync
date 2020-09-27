@@ -9,12 +9,19 @@ const Dashboard = ({user, navigation}) => {
     console.log(user)
     return (
         <View>
-            <Text>Abc</Text>
+            <Text>Welcome to your dashboard!</Text>
+
             <TouchableOpacity style={styles.signOutButton} onPress={() => {
                 fire.auth().signOut().then(() => alert('User signed out!'));
                 navigation.navigate('Main')
             }}>
                 <Text style={styles.signOutText}>Sign Out</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.signOutButton} onPress={() => {
+                navigation.navigate('AddAssignment')
+            }}>
+                <Text style={styles.signOutText}>Add Assignment</Text>
             </TouchableOpacity>
         </View>
     );
