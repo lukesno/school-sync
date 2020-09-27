@@ -31,7 +31,7 @@ function CreateScreen({ navigation }) {
                 <View style={styles.credentialButtons}>
                     <TouchableOpacity style={styles.login} onPress={() => {
                         console.log(classID)
-                        navigation.navigate("RegisterOptions")}}>
+                        navigation.navigate("AddAssignment")}}>
 
                         <Text style={styles.loginText}>Create Class</Text>
                     </TouchableOpacity>  

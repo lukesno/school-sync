@@ -8,6 +8,7 @@ import Dashboard from './components/Dashboard.js'
 import EnrollScreen from './components/EnrollScreen.js';
 import CreateScreen from './components/CreateScreen.js';
 import RegisterOptionsScreen from './components/RegisterOptionsScreen.js';
+import AddAssignmentScreen from './components/AddAssignmentScreen.js';
 
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -87,6 +88,11 @@ function App() {
           }
         }} />
         <Stack.Screen name="RegisterOptions" component={RegisterOptionsScreen} options={{
+          cardStyle: {
+            backgroundColor: 'white'
+          }
+        }} />
+        <Stack.Screen name="AddAssignment" component={AddAssignmentScreen} options={{
           cardStyle: {
             backgroundColor: 'white'
           }
